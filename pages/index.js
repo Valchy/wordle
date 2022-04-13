@@ -4,7 +4,6 @@ import { WordleContext } from '../context/WordleContext';
 
 const useInitGame = (toBeGuessedWord) => {
 	let wordleRowWrappers = [];
-	let boxIndex = 0;
 
 	// Creating 6 wordle row wrappers
 	// for the possigle six word guesses
@@ -13,8 +12,7 @@ const useInitGame = (toBeGuessedWord) => {
 
 		// For each row making 5 wordle boxes
 		for (let j = 0; j <= 4; j++) {
-			wordleRow.push(<WordleBox key={`wordle-box-${boxIndex}`} boxIndex={boxIndex}/>);
-			boxIndex++;
+			wordleRow.push(<WordleBox key={`wordle-box-${i}-${j}`} boxId={`${i}-${j}`}/>);
 		}
 		
 		// Creating the wordle box HTML

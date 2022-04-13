@@ -5,18 +5,34 @@ export const WordleContext = createContext();
 
 export const WordleProvider = ({children}) => {
 	const toBeGuessedWord = 'hello';
-	const [wordleBox, setWordleBox] = useState(0);
+	const [selectedWordleRow, setSelectedWordleRow] = useState(0);
+	const [selectedWordleBox, setSelectedWordleBox] = useState(0);
 
-	useKey('Backspace', () => {
-		if (wordleBox != 0) setWordleBox(wordleBox--);
-		document.getElementById(`wordle-box-${wordleBox}`).textContent = '';
+	useKey('Backspace', (e) => {
+		e.preventDefault();
+		if (selectedWordleBox != 0) setSelectedWordleBox(selectedWordleBox--);
+		document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`).textContent = '';
+	});
+
+	useKey('Enter', (e) => {
+		e.preventDefault();
+		let wordGuess = '';
+
+		for (let i = 0; i <= 4; i++) {
+			wordGuess += document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`).textContent;
+		}
+
+		if (wordGuess.length == 5) {
+			alert(`You guessed: ${wordGuess}`);
+		} else alert('Nope');
 	});
 
 	useEffect(() => {
 		const onGlobalKeyPress = (e) => {
-			document.getElementById(`wordle-box-${wordleBox}`).textContent = e.key;
+			if (selectedWordleBox == 5) return;
+			else document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`).textContent = e.key;
 
-			if (wordleBox != 29) setWordleBox(wordleBox++);
+			if (selectedWordleBox <= 4) setSelectedWordleBox(selectedWordleBox++);
 		}
 
 		// Key press global event handler binding
@@ -24,7 +40,7 @@ export const WordleProvider = ({children}) => {
 		return () => window.removeEventListener('keypress', onGlobalKeyPress);
 	}, []);
 
-	return <WordleContext.Provider value={{wordleBox, setWordleBox, toBeGuessedWord}}>
+	return <WordleContext.Provider value={{selectedWordleBox, setSelectedWordleBox, selectedWordleRow, setSelectedWordleRow, toBeGuessedWord}}>
 		{children}
 	</WordleContext.Provider>
 }

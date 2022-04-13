@@ -5,7 +5,7 @@ import {WordleProvider} from '../context/WordleContext';
 
 function MyApp({ Component, pageProps }) {
 	return <WordleProvider>
-		<Component {...pageProps} />;
+		<Component {...pageProps} />
 	</WordleProvider>
 }
 
