@@ -1,15 +1,30 @@
-import { useState, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
+import {useKey, useKeyPressEvent} from 'react-use';
 
 export const WordleContext = createContext();
 
-export const WordleProvider = () => {
-	const [wordleInputValue, setWordleInputValue] = useState('');
+export const WordleProvider = ({children}) => {
+	const toBeGuessedWord = 'hello';
+	const [wordleBox, setWordleBox] = useState(0);
 
-	const onWordleInputChange = ({target}) => {
-		setWordleInputValue(target.value);
-	}
+	useKey('Backspace', () => {
+		if (wordleBox != 0) setWordleBox(wordleBox--);
+		document.getElementById(`wordle-box-${wordleBox}`).textContent = '';
+	});
 
-	return <WordleContext.Provider value={{onWordleInputChange}}>
+	useEffect(() => {
+		const onGlobalKeyPress = (e) => {
+			document.getElementById(`wordle-box-${wordleBox}`).textContent = e.key;
+
+			if (wordleBox != 29) setWordleBox(wordleBox++);
+		}
+
+		// Key press global event handler binding
+		window.addEventListener('keypress', onGlobalKeyPress);
+		return () => window.removeEventListener('keypress', onGlobalKeyPress);
+	}, []);
+
+	return <WordleContext.Provider value={{wordleBox, setWordleBox, toBeGuessedWord}}>
 		{children}
 	</WordleContext.Provider>
 }
