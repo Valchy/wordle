@@ -1,9 +1,9 @@
 import { useState, useEffect, createContext } from 'react';
-import {useKey} from 'react-use';
+import { useKey } from 'react-use';
 
 export const WordleContext = createContext();
 
-export const WordleProvider = ({children}) => {
+export const WordleProvider = ({ children }) => {
 	const [gameStatus, setGameStatus] = useState('playing');
 	const toBeGuessedWord = 'hello';
 	const selectedWordleRow = 0;
@@ -34,7 +34,7 @@ export const WordleProvider = ({children}) => {
 		else if (selectedWordleRow != 5) {
 			selectedWordleBox = 0;
 			selectedWordleRow++;
-			alert('That is not the word!')
+			alert('That is not the word!');
 		} else alert('You Lost!');
 	});
 
@@ -44,14 +44,16 @@ export const WordleProvider = ({children}) => {
 			else document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`).textContent = e.key;
 
 			if (selectedWordleBox <= 4) selectedWordleBox++;
-		}
+		};
 
 		// Key press global event handler binding
 		window.addEventListener('keypress', onGlobalKeyPress);
 		return () => window.removeEventListener('keypress', onGlobalKeyPress);
 	}, []);
 
-	return <WordleContext.Provider value={{gameStatus, setGameStatus, selectedWordleBox, selectedWordleRow, toBeGuessedWord}}>
-		{children}
-	</WordleContext.Provider>
-}
+	return (
+		<WordleContext.Provider value={{ gameStatus, setGameStatus, selectedWordleBox, selectedWordleRow, toBeGuessedWord }}>
+			{children}
+		</WordleContext.Provider>
+	);
+};
