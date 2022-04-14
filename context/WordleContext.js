@@ -52,7 +52,15 @@ export const WordleProvider = ({ children }) => {
 	}, []);
 
 	return (
-		<WordleContext.Provider value={{ gameStatus, setGameStatus, selectedWordleBox, selectedWordleRow, toBeGuessedWord }}>
+		<WordleContext.Provider
+			value={{
+				gameStatus,
+				setGameStatus,
+				selectedWordleBox,
+				selectedWordleRow,
+				toBeGuessedWord,
+			}}
+		>
 			{children}
 		</WordleContext.Provider>
 	);
