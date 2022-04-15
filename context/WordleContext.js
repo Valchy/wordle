@@ -67,8 +67,8 @@ export const WordleProvider = ({ children }) => {
 						document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-correct');
 					} else if (wordleBoxLetter && toBeGuessedWord.includes(wordleBoxLetter)) {
 						// Color if correct but wrong place keyboard and wordle box
-						changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-miss', true);
-						setTimeout(() => document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-miss'), 350 * i);
+						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-miss', true), 350 * i);
+						document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-miss');
 					} else {
 						// Color keyboard for guessed but wrong letter
 						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-wrong', true), 350 * i);
