@@ -2,7 +2,7 @@ import { qwerty } from '../data/qwerty';
 
 export default function Keyboard({}) {
 	const clickHandler = (letter) => {
-		window.dispatchEvent(new KeyboardEvent(letter == 'Enter' || letter == 'Backspace' ? 'keydown' : 'keypress', { key: letter }));
+		window.dispatchEvent(new KeyboardEvent('keydown', { key: letter }));
 	};
 
 	return (
