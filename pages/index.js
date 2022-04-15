@@ -17,14 +17,14 @@ export default function WordleGame() {
 
 				<meta name="description" content="An infinite free wordle game you can play all day long. Try it now!" />
 				<meta name="author" content="Valeri Sabev" />
-				<meta property="og:title" content="Wordle Game" />
-				<meta name="twitter:title" content="Wordle Game" />
-				<meta property="og:image" content="images/words.png" />
+				<meta property="og:title" content="Infinite Wordle Game" />
+				<meta name="twitter:title" content="Infinite Wordle Game" />
+				<meta property="og:image" content="https://wordle.valchy.com/images/words.png" />
 				<meta property="og:image:alt" content="Wordle game" />
-				<meta name="twitter:image" content="images/words.png" />
+				<meta name="twitter:image" content="https://wordle.valchy.com/images/words.png" />
 				<meta property="og:description" content="An infinite free wordle game you can play all day long. Try it now!" />
-				<meta name="twitter:card" content="summary" />
-				<meta name="twitter:description" content="summary" />
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:description" content="An infinite free wordle game you can play all day long. Try it now!" />
 
 				<link rel="shortcut icon" href="images/words.png" type="image/x-icon" />
 				<link rel="apple-touch-icon" href="images/words.png" />
