@@ -6,7 +6,7 @@ export default function Keyboard({}) {
 	};
 
 	return (
-		<div className="mt-10">
+		<section className="mt-10">
 			{qwerty.map((keyboardRow, index) => (
 				<div key={`keyboard-row-${index}`} className="flex items-center justify-center">
 					{keyboardRow.map((letter, index) => (
@@ -21,6 +21,6 @@ export default function Keyboard({}) {
 					))}
 				</div>
 			))}
-		</div>
+		</section>
 	);
 }

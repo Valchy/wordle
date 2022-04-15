@@ -28,5 +28,5 @@ export default function Game() {
 		return wordleRowWrappers;
 	};
 
-	return <div className="flex flex-col">{useInitGameHTML()}</div>;
+	return <section className="flex flex-col">{useInitGameHTML()}</section>;
 }
