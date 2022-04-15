@@ -6,7 +6,7 @@ export default function Keyboard({}) {
 	};
 
 	return (
-		<section className="mt-5 pb-12">
+		<section className="mt-5 pb-12 px-3 w-screen">
 			{qwerty.map((keyboardRow, index) => (
 				<div key={`keyboard-row-${index}`} className="flex items-center justify-center">
 					{keyboardRow.map((letter, index) => (
@@ -14,7 +14,7 @@ export default function Keyboard({}) {
 							key={`key-${index}`}
 							id={`keyboard-key-${letter}`}
 							onClick={() => clickHandler(letter)}
-							className="text-white bg-slate-700 text-[12px] sm:text-base sm:min-w-[40px] text-center rounded-md uppercase font-bold m-[2px] sm:m-1 py-2 px-2 sm:px-4 cursor-pointer select-none"
+							className="text-white bg-slate-700 text-[12px] sm:text-base sm:min-w-[40px] grow sm:grow-0 text-center rounded-md uppercase font-bold m-[2px] sm:m-1 py-2 px-2 sm:px-4 cursor-pointer select-none"
 						>
 							{letter == 'Backspace' ? <>&#x232b;</> : letter}
 						</div>
