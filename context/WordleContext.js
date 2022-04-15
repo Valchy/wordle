@@ -34,14 +34,22 @@ export const WordleProvider = ({ children }) => {
 
 				let wordGuess = ''; // Will include guessed word based on the five wordle boxes on the selected row
 
-				// Looping through wordle row to get guess word and do color highlighting
+				// Looping through wordle row to get guess word
+				for (let i = 0; i <= 4; i++) {
+					// Add wordle box letter to guess word state
+					const wordleBoxElm = document.getElementById(`wordle-box-${selectedWordleRow}-${i}`);
+					if (wordleBoxElm.textContent) wordGuess += wordleBoxElm.textContent;
+				}
+
+				// Error handling if word is not in the word list
+				if (!words.includes(wordGuess)) return setAlertMsg('Word is not in word list :(');
+
+				// Do color highlighting of wordle box and keyboard
 				for (let i = 0; i <= 4; i++) {
 					const wordleBoxElm = document.getElementById(`wordle-box-${selectedWordleRow}-${i}`);
 					const wordleBoxLetter = wordleBoxElm.textContent.toLowerCase();
 
-					// Add wordle box letter to guess word state
-					if (wordleBoxElm.textContent) wordGuess += wordleBoxElm.textContent;
-
+					// Color by position and if exists in word
 					if (wordleBoxLetter == toBeGuessedWord[i]) {
 						// Color if correct keyboard and wordle box
 						changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-correct');
