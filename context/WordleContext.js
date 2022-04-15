@@ -86,7 +86,7 @@ export const WordleProvider = ({ children }) => {
 										gameStats.losses > 0 ? 'lost again' : 'lost'
 								  }! Word was "${toBeGuessedWord}". Reload and try again :)`,
 						color: endOfGame == 'wins' ? '#38B2AB' : '#F56565',
-						time: 10000
+						time: 1
 					});
 
 					gameStats[endOfGame] += 1;

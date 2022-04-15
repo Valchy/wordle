@@ -8,7 +8,7 @@ export default function AlertMsg() {
 	useEffect(() => {
 		setShowAlert(true);
 
-		setTimeout(() => setShowAlert(false), wordleAlert.time);
+		if (wordleAlert.time != 1) setTimeout(() => setShowAlert(false), wordleAlert.time);
 	}, [wordleAlert]);
 
 	return (
