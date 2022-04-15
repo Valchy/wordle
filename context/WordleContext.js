@@ -57,22 +57,32 @@ export const WordleProvider = ({ children }) => {
 
 				// Do color highlighting of wordle box and keyboard
 				for (let i = 0; i <= 4; i++) {
+					let timeoutTime = 350;
 					const wordleBoxElm = document.getElementById(`wordle-box-${selectedWordleRow}-${i}`);
 					const wordleBoxLetter = wordleBoxElm.textContent.toLowerCase();
 
 					// Color by position and if exists in word
 					if (wordleBoxLetter == toBeGuessedWord[i]) {
 						// Color if correct keyboard and wordle box
-						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-correct', true), 350 * i);
-						document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-correct');
+						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-correct', true), timeoutTime * i);
+						setTimeout(
+							() => document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-correct'),
+							timeoutTime * 5
+						);
 					} else if (wordleBoxLetter && toBeGuessedWord.includes(wordleBoxLetter)) {
 						// Color if correct but wrong place keyboard and wordle box
-						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-miss', true), 350 * i);
-						document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-miss');
+						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-miss', true), timeoutTime * i);
+						setTimeout(
+							() => document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-miss'),
+							timeoutTime * 5
+						);
 					} else {
 						// Color keyboard for guessed but wrong letter
-						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-wrong', true), 350 * i);
-						document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-wrong');
+						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-wrong', true), timeoutTime * i);
+						setTimeout(
+							() => document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-wrong'),
+							timeoutTime * 5
+						);
 					}
 				}
 
