@@ -5,11 +5,21 @@ import { words } from '../data/words';
 export const WordleContext = createContext();
 
 export const WordleProvider = ({ children }) => {
+	const [gameStats, setGameStats] = useState({
+		played: 0,
+		wins: 0,
+		losses: 0,
+		guesses: 0,
+	});
 	const [gameStatus, setGameStatus] = useState('playing');
 	const [alertMsg, setAlertMsg] = useState('New game, start guessing...');
 	const toBeGuessedWord = words[Math.floor(Math.random() * words.length)];
 	const selectedWordleRow = 0,
 		selectedWordleBox = 0;
+
+	useEffect(() => {
+		if (window.localStorage.gameStats) setGameStats(JSON.parse(window.localStorage.gameStats));
+	}, []);
 
 	useEffect(() => {
 		const onGlobalKeyPress = ({ key }) => {
@@ -64,18 +74,29 @@ export const WordleProvider = ({ children }) => {
 					}
 				}
 
+				const endGameAndSaveGameStats = (endOfGame) => {
+					setGameStatus(endOfGame);
+					setAlertMsg(
+						endOfGame == 'wins'
+							? `Congrats, you ${gameStats.wins > 0 ? 'won again' : 'won'}! Reload to play again :)`
+							: `Damn, you ${gameStats.losses > 0 ? 'lost again' : 'lost'}! Reload and try again :)`
+					);
+
+					gameStats[endOfGame] += 1;
+					gameStats.played += 1;
+					gameStats.guesses += selectedWordleRow + 1;
+
+					setGameStats({ ...gameStats });
+					window.localStorage.gameStats = JSON.stringify(gameStats);
+				};
+
 				// Alerting user based on their word guess
-				if (wordGuess === toBeGuessedWord) {
-					setGameStatus('stopped');
-					setAlertMsg('You guessed the word :P');
-				} else if (selectedWordleRow != 5) {
+				if (wordGuess === toBeGuessedWord) endGameAndSaveGameStats('wins');
+				else if (selectedWordleRow != 5) {
 					selectedWordleBox = 0;
 					selectedWordleRow++;
-					setAlertMsg('That is not the word!');
-				} else {
-					setGameStatus('stopped');
-					setAlertMsg('Yup, you just lost :/');
-				}
+					setAlertMsg('This is not the word!');
+				} else endGameAndSaveGameStats('losses');
 			}
 
 			// On alphabet letter key press
@@ -94,11 +115,12 @@ export const WordleProvider = ({ children }) => {
 		// Key press global event handler binding
 		window.addEventListener('keydown', onGlobalKeyPress);
 		return () => window.removeEventListener('keydown', onGlobalKeyPress);
-	}, [gameStatus]);
+	}, [gameStatus, gameStats]);
 
 	return (
 		<WordleContext.Provider
 			value={{
+				gameStats,
 				gameStatus,
 				setGameStatus,
 				alertMsg,

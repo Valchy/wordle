@@ -1,5 +1,6 @@
 import Header from '../components/Header';
 import Game from '../components/Game';
+import GameStats from '../components/GameStats';
 import Keyboard from '../components/Keyboard';
 import Head from 'next/head';
 
@@ -28,6 +29,7 @@ export default function WordleGame() {
 			<main className="bg-neutral-900 w-screen flex flex-col items-center">
 				<Header />
 				<Game />
+				<GameStats />
 				<Keyboard />
 			</main>
 		</>
