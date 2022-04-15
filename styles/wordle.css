@@ -15,6 +15,11 @@ body {
 }
 
 .flip-wordle-word {
+	-webkit-transition: 2s ease 0s;
+	-o-transition: 2s ease 0s;
+	-moz-transition: 2s ease 0s;
 	transition: 2s ease 0s;
+	-webkit-transform: rotateX(360deg);
+	-moz-transform: rotateX(360deg);
 	transform: rotateX(360deg);
 }
