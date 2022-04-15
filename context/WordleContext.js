@@ -76,9 +76,5 @@ export const WordleProvider = ({ children }) => {
 const changeWordleBoxBgColor = (elm, color) => {
 	const elmClassList = elm.classList;
 	elmClassList.remove(elm.className.split(' ').find((elmClass) => elmClass.slice(0, 2) == 'bg'));
-
-	if (color == 'default') elmClassList.add('bg-slate-800');
-	else if (color == 'wrong') elmClassList.add('bg-zinc-900');
-	else if (color == 'miss') elmClassList.add('bg-orange-500');
-	else if (color == 'correct') elmClassList.add('bg-green-500');
+	elmClassList.add(color == 'default' ? 'bg-slate-800' : color);
 };

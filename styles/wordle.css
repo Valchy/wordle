@@ -1,3 +1,11 @@
-.selected-wordle-box {
-  border: 1px solid #fff;
+.wrong {
+	background-color: rgb(39 39 42);
+}
+
+.miss {
+	background-color: rgb(235, 154, 48);
+}
+
+.correct {
+	background-color: rgb(37, 168, 74);
 }
