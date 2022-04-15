@@ -15,6 +15,8 @@ body {
 }
 
 .flip-wordle-word {
+	position: relative;
+	z-index: 1;
 	-webkit-transition: 2s ease 0s;
 	-o-transition: 2s ease 0s;
 	-moz-transition: 2s ease 0s;

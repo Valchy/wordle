@@ -18,7 +18,7 @@ export default function Game() {
 
 			// Creating the wordle box HTML
 			wordleRowWrappers.push(
-				<div className="flex flex-row" key={`wordle-row-${i}`}>
+				<div className="relative z-[1] flex flex-row" key={`wordle-row-${i}`}>
 					{wordleRow}
 				</div>
 			);
@@ -27,5 +27,5 @@ export default function Game() {
 		return wordleRowWrappers;
 	};
 
-	return <section className="flex flex-col">{useInitGameHTML()}</section>;
+	return <section className="relative z-[1] flex flex-col">{useInitGameHTML()}</section>;
 }
