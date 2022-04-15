@@ -14,15 +14,18 @@ export default function WordleGame() {
 				<meta name="MobileOptimized" content="380" />
 				<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no" />
 				<title>Infinite Wordle Game</title>
-				<meta name="description" content="An infinite free wordle game you can play all day long" />
+
+				<meta name="description" content="An infinite free wordle game you can play all day long. Try it now!" />
 				<meta name="author" content="Valeri Sabev" />
 				<meta property="og:title" content="Wordle Game" />
 				<meta name="twitter:title" content="Wordle Game" />
 				<meta property="og:image" content="images/words.png" />
+				<meta property="og:image:alt" content="Wordle game" />
 				<meta name="twitter:image" content="images/words.png" />
-				<meta property="og:description" content="An infinite free wordle game you can play all day long" />
+				<meta property="og:description" content="An infinite free wordle game you can play all day long. Try it now!" />
 				<meta name="twitter:card" content="summary" />
 				<meta name="twitter:description" content="summary" />
+
 				<link rel="shortcut icon" href="images/words.png" type="image/x-icon" />
 				<link rel="apple-touch-icon" href="images/words.png" />
 			</Head>
