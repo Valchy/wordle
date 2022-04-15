@@ -1,13 +1,12 @@
-import { useContext } from 'react';
-import { WordleContext } from '../context/WordleContext';
+import GameStats from '../components/GameStats';
+import AlertMsg from '../components/AlertMsg';
 
 export default function Header() {
-	const { alertMsg } = useContext(WordleContext);
-
 	return (
-		<header className="pt-12 pb-6 text-center">
-			<h1 className="text-3xl font-bold text-slate-300 pb-8">Infinite Wordle</h1>
-			<span className="text-white">{alertMsg}</span>
+		<header className="py-6 w-screen text-center flex flex-col items-center relative">
+			<h1 className="text-3xl font-bold text-slate-300">Infinite Wordle</h1>
+			<GameStats />
+			<AlertMsg />
 		</header>
 	);
 }

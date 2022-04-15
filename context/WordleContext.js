@@ -9,10 +9,10 @@ export const WordleProvider = ({ children }) => {
 		played: 0,
 		wins: 0,
 		losses: 0,
-		guesses: 0,
+		guesses: 0
 	});
 	const [gameStatus, setGameStatus] = useState('playing');
-	const [alertMsg, setAlertMsg] = useState('New game, start guessing...');
+	const [alertMsg, setAlertMsg] = useState({ label: 'New game started...', color: '#4299E1', time: 2000 });
 	const toBeGuessedWord = words[Math.floor(Math.random() * words.length)];
 	const selectedWordleRow = 0,
 		selectedWordleBox = 0;
@@ -40,7 +40,7 @@ export const WordleProvider = ({ children }) => {
 			// On enter key press
 			if (key == 'Enter') {
 				// Error handling if not enough letters have been provided
-				if (selectedWordleBox != 5) return setAlertMsg('Not enough letters ^_^');
+				if (selectedWordleBox != 5) return setAlertMsg({ label: 'Not enough letters ^_^', color: '#4299E1', time: 2000 });
 
 				let wordGuess = ''; // Will include guessed word based on the five wordle boxes on the selected row
 
@@ -52,7 +52,8 @@ export const WordleProvider = ({ children }) => {
 				}
 
 				// Error handling if word is not in the word list
-				if (!words.includes(wordGuess.toLowerCase())) return setAlertMsg('Word is not in word list :(');
+				if (!words.includes(wordGuess.toLowerCase()))
+					return setAlertMsg({ label: 'Word is not in word list :(', color: '#4299E1', time: 2000 });
 
 				// Do color highlighting of wordle box and keyboard
 				for (let i = 0; i <= 4; i++) {
@@ -77,13 +78,16 @@ export const WordleProvider = ({ children }) => {
 				// End game handler
 				const handleEndGameAndSaveGameStats = (endOfGame) => {
 					setGameStatus(endOfGame);
-					setAlertMsg(
-						endOfGame == 'wins'
-							? `Congrats, you ${gameStats.wins > 0 ? 'won again' : 'won'}! Reload to play again :)`
-							: `Damn, you ${
-									gameStats.losses > 0 ? 'lost again' : 'lost'
-							  }! Word was "${toBeGuessedWord}" Reload and try again :)`
-					);
+					setAlertMsg({
+						label:
+							endOfGame == 'wins'
+								? `Congrats, you ${gameStats.wins > 0 ? 'won again' : 'won'}! Reload to play again :)`
+								: `Damn, you ${
+										gameStats.losses > 0 ? 'lost again' : 'lost'
+								  }! Word was "${toBeGuessedWord}". Reload and try again :)`,
+						color: endOfGame == 'wins' ? '#38B2AB' : '#F56565',
+						time: 10000
+					});
 
 					gameStats[endOfGame] += 1;
 					gameStats.played += 1;
@@ -98,7 +102,7 @@ export const WordleProvider = ({ children }) => {
 				else if (selectedWordleRow != 5) {
 					selectedWordleBox = 0;
 					selectedWordleRow++;
-					setAlertMsg('This is not the word!');
+					setAlertMsg({ label: 'This is not the word!', color: '#4299E1', time: 2000 });
 				} else handleEndGameAndSaveGameStats('losses');
 			}
 
@@ -130,7 +134,7 @@ export const WordleProvider = ({ children }) => {
 				setAlertMsg,
 				selectedWordleBox,
 				selectedWordleRow,
-				toBeGuessedWord,
+				toBeGuessedWord
 			}}
 		>
 			{children}

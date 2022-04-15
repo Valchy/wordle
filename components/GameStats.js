@@ -26,7 +26,7 @@ export default function GameStats() {
 	];
 
 	return (
-		<section className="mt-5 flex">
+		<section className="mt-3 pb-2 flex">
 			{uiDataGameStats.map(({ label, value }, index) => (
 				<div key={`game-stats-${index}`} className="mx-3 text-white flex flex-col items-center">
 					<strong>{label}</strong>
