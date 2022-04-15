@@ -63,14 +63,15 @@ export const WordleProvider = ({ children }) => {
 					// Color by position and if exists in word
 					if (wordleBoxLetter == toBeGuessedWord[i]) {
 						// Color if correct keyboard and wordle box
-						changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-correct');
+						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-correct', true), 350 * i);
 						document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-correct');
 					} else if (wordleBoxLetter && toBeGuessedWord.includes(wordleBoxLetter)) {
 						// Color if correct but wrong place keyboard and wordle box
-						changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-miss');
-						document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-miss');
+						changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-miss', true);
+						setTimeout(() => document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-miss'), 350 * i);
 					} else {
 						// Color keyboard for guessed but wrong letter
+						setTimeout(() => changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-wrong', true), 350 * i);
 						document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-wrong');
 					}
 				}
@@ -142,7 +143,8 @@ export const WordleProvider = ({ children }) => {
 	);
 };
 
-const changeWordleBoxBgColor = (elm, color) => {
+const changeWordleBoxBgColor = (elm, color, flip = false) => {
 	elm.classList.remove(elm.className.split(' ').find((elmClass) => elmClass.slice(0, 2) == 'bg'));
+	if (flip) elm.classList.add('flip-wordle-word');
 	elm.classList.add(color == 'default' ? 'bg-slate-800' : color);
 };

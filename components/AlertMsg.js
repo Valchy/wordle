@@ -16,7 +16,7 @@ export default function AlertMsg() {
 		wordleAlert.time != 0 && (
 			<div
 				style={{ backgroundColor: `${wordleAlert.color}`, boxShadow: '1px 12px 52px 0px rgba(0,0,0,0.7)' }}
-				className="transition-all duration-500 absolute rounded-md -bottom-4 flex items-center justify-center text-white text-sm font-bold px-4 py-3"
+				className="transition-all duration-500 absolute z-50 rounded-md -bottom-4 flex items-center justify-center text-white text-sm font-bold px-4 py-3"
 				role="alert"
 			>
 				<svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

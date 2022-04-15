@@ -13,3 +13,8 @@ body {
 .bg-correct {
 	background-color: rgb(37, 168, 74);
 }
+
+.flip-wordle-word {
+	transition: 2s ease 0s;
+	transform: rotateX(360deg);
+}
