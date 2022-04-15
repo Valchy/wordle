@@ -1,19 +1,15 @@
 import { useState, useEffect, createContext } from 'react';
 import { useKey } from 'react-use';
+import { words } from '../data/words';
 
 export const WordleContext = createContext();
 
 export const WordleProvider = ({ children }) => {
 	const [gameStatus, setGameStatus] = useState('playing');
 	const [alertMsg, setAlertMsg] = useState('New game, start guessing...');
-	const toBeGuessedWord = 'hello';
+	const toBeGuessedWord = words[Math.floor(Math.random() * words.length)];
 	const selectedWordleRow = 0,
 		selectedWordleBox = 0;
-
-	// useEffect(() => {
-	// 	document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox--}`)?.classList?.remove('selected-wordle-box');
-	// 	document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`)?.classList?.add('selected-wordle-box');
-	// }, [selectedWordleBox]);
 
 	useKey('Backspace', (e) => {
 		if (gameStatus != 'playing') return;
@@ -42,7 +38,7 @@ export const WordleProvider = ({ children }) => {
 			} else if (wordleBoxLetter && toBeGuessedWord.includes(wordleBoxLetter)) {
 				changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-miss');
 				document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-miss');
-			}
+			} else document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-wrong');
 
 			if (wordleBoxElm.textContent) wordGuess += wordleBoxElm.textContent;
 		}
