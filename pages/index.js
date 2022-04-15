@@ -25,7 +25,7 @@ export default function WordleGame() {
 				<link rel="shortcut icon" href="images/words.png" type="image/x-icon" />
 				<link rel="apple-touch-icon" href="images/words.png" />
 			</Head>
-			<main className="bg-neutral-900 h-screen w-screen flex flex-col items-center">
+			<main className="bg-neutral-900 w-screen flex flex-col items-center">
 				<Header />
 				<Game />
 				<Keyboard />

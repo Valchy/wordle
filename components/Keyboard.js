@@ -14,7 +14,7 @@ export default function Keyboard({}) {
 							key={`key-${index}`}
 							id={`keyboard-key-${letter}`}
 							onClick={() => clickHandler(letter)}
-							className="text-white bg-slate-700 min-w-[40px] text-center rounded-md uppercase font-bold m-1 py-2 px-4 cursor-pointer select-none"
+							className="text-white bg-slate-700 text-[12px] sm:text-base sm:min-w-[40px] text-center rounded-md uppercase font-bold m-[2px] sm:m-1 py-2 px-2 sm:px-4 cursor-pointer select-none"
 						>
 							{letter == 'Backspace' ? <>&#x232b;</> : letter}
 						</div>

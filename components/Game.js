@@ -3,7 +3,7 @@ import { WordleContext } from '../context/WordleContext';
 import WordleBox from './WordleBox';
 
 export default function Game() {
-	const { toBeGuessedWord } = useContext(WordleContext);
+	const { gameStatus } = useContext(WordleContext);
 	const useInitGameHTML = () => {
 		let wordleRowWrappers = [];
 
@@ -28,5 +28,10 @@ export default function Game() {
 		return wordleRowWrappers;
 	};
 
-	return <section className="flex flex-col">{useInitGameHTML()}</section>;
+	return (
+		<section className="flex flex-col">
+			{useInitGameHTML()}
+			{gameStatus != 'playing' && <EndGameScreen />}
+		</section>
+	);
 }
