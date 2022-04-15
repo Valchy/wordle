@@ -12,7 +12,7 @@ export const WordleProvider = ({ children }) => {
 		guesses: 0
 	});
 	const [gameStatus, setGameStatus] = useState('playing');
-	const [alertMsg, setAlertMsg] = useState({ label: 'New game started...', color: '#4299E1', time: 2000 });
+	const [wordleAlert, setWordleAlert] = useState({ label: '', color: '', time: 0 });
 	const toBeGuessedWord = words[Math.floor(Math.random() * words.length)];
 	const selectedWordleRow = 0,
 		selectedWordleBox = 0;
@@ -40,7 +40,7 @@ export const WordleProvider = ({ children }) => {
 			// On enter key press
 			if (key == 'Enter') {
 				// Error handling if not enough letters have been provided
-				if (selectedWordleBox != 5) return setAlertMsg({ label: 'Not enough letters ^_^', color: '#4299E1', time: 2000 });
+				if (selectedWordleBox != 5) return setWordleAlert({ label: 'Not enough letters ^_^', color: '#4299E1', time: 2000 });
 
 				let wordGuess = ''; // Will include guessed word based on the five wordle boxes on the selected row
 
@@ -53,7 +53,7 @@ export const WordleProvider = ({ children }) => {
 
 				// Error handling if word is not in the word list
 				if (!words.includes(wordGuess.toLowerCase()))
-					return setAlertMsg({ label: 'Word is not in word list :(', color: '#4299E1', time: 2000 });
+					return setWordleAlert({ label: 'Word is not in word list :(', color: '#4299E1', time: 2000 });
 
 				// Do color highlighting of wordle box and keyboard
 				for (let i = 0; i <= 4; i++) {
@@ -78,7 +78,7 @@ export const WordleProvider = ({ children }) => {
 				// End game handler
 				const handleEndGameAndSaveGameStats = (endOfGame) => {
 					setGameStatus(endOfGame);
-					setAlertMsg({
+					setWordleAlert({
 						label:
 							endOfGame == 'wins'
 								? `Congrats, you ${gameStats.wins > 0 ? 'won again' : 'won'}! Reload to play again :)`
@@ -102,7 +102,7 @@ export const WordleProvider = ({ children }) => {
 				else if (selectedWordleRow != 5) {
 					selectedWordleBox = 0;
 					selectedWordleRow++;
-					setAlertMsg({ label: 'This is not the word!', color: '#4299E1', time: 2000 });
+					setWordleAlert({ label: 'This is not the word!', color: '#4299E1', time: 2000 });
 				} else handleEndGameAndSaveGameStats('losses');
 			}
 
@@ -130,8 +130,8 @@ export const WordleProvider = ({ children }) => {
 				gameStats,
 				gameStatus,
 				setGameStatus,
-				alertMsg,
-				setAlertMsg,
+				wordleAlert,
+				setWordleAlert,
 				selectedWordleBox,
 				selectedWordleRow,
 				toBeGuessedWord
@@ -143,7 +143,6 @@ export const WordleProvider = ({ children }) => {
 };
 
 const changeWordleBoxBgColor = (elm, color) => {
-	const elmClassList = elm.classList;
-	elmClassList.remove(elm.className.split(' ').find((elmClass) => elmClass.slice(0, 2) == 'bg'));
-	elmClassList.add(color == 'default' ? 'bg-slate-800' : color);
+	elm.classList.remove(elm.className.split(' ').find((elmClass) => elmClass.slice(0, 2) == 'bg'));
+	elm.classList.add(color == 'default' ? 'bg-slate-800' : color);
 };
