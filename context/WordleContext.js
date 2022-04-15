@@ -74,12 +74,15 @@ export const WordleProvider = ({ children }) => {
 					}
 				}
 
-				const endGameAndSaveGameStats = (endOfGame) => {
+				// End game handler
+				const handleEndGameAndSaveGameStats = (endOfGame) => {
 					setGameStatus(endOfGame);
 					setAlertMsg(
 						endOfGame == 'wins'
 							? `Congrats, you ${gameStats.wins > 0 ? 'won again' : 'won'}! Reload to play again :)`
-							: `Damn, you ${gameStats.losses > 0 ? 'lost again' : 'lost'}! Reload and try again :)`
+							: `Damn, you ${
+									gameStats.losses > 0 ? 'lost again' : 'lost'
+							  }! Word was "${toBeGuessedWord}" Reload and try again :)`
 					);
 
 					gameStats[endOfGame] += 1;
@@ -91,12 +94,12 @@ export const WordleProvider = ({ children }) => {
 				};
 
 				// Alerting user based on their word guess
-				if (wordGuess === toBeGuessedWord) endGameAndSaveGameStats('wins');
+				if (wordGuess === toBeGuessedWord) handleEndGameAndSaveGameStats('wins');
 				else if (selectedWordleRow != 5) {
 					selectedWordleBox = 0;
 					selectedWordleRow++;
 					setAlertMsg('This is not the word!');
-				} else endGameAndSaveGameStats('losses');
+				} else handleEndGameAndSaveGameStats('losses');
 			}
 
 			// On alphabet letter key press
