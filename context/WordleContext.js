@@ -17,7 +17,10 @@ export const WordleProvider = ({ children }) => {
 	useKey('Backspace', (e) => {
 		e.preventDefault();
 		if (selectedWordleBox != 0) selectedWordleBox--;
-		document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`).textContent = '';
+
+		const selectedBox = document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`);
+		changeWordleBoxBgColor(selectedBox.parentNode, 'default');
+		selectedBox.textContent = '';
 	});
 
 	useKey('Enter', (e) => {
@@ -41,7 +44,11 @@ export const WordleProvider = ({ children }) => {
 	useEffect(() => {
 		const onGlobalKeyPress = (e) => {
 			if (selectedWordleBox == 5) return;
-			else document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`).textContent = e.key;
+			else {
+				const selectedBox = document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`);
+				changeWordleBoxBgColor(selectedBox.parentNode, 'wrong');
+				selectedBox.textContent = e.key;
+			}
 
 			if (selectedWordleBox <= 4) selectedWordleBox++;
 		};
@@ -64,4 +71,14 @@ export const WordleProvider = ({ children }) => {
 			{children}
 		</WordleContext.Provider>
 	);
+};
+
+const changeWordleBoxBgColor = (elm, color) => {
+	const elmClassList = elm.classList;
+	elmClassList.remove(elm.className.split(' ').find((elmClass) => elmClass.slice(0, 2) == 'bg'));
+
+	if (color == 'default') elmClassList.add('bg-slate-800');
+	else if (color == 'wrong') elmClassList.add('bg-zinc-900');
+	else if (color == 'miss') elmClassList.add('bg-orange-500');
+	else if (color == 'correct') elmClassList.add('bg-green-500');
 };

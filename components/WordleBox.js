@@ -1,7 +1,6 @@
 import { useRef } from 'react';
-// import {WordleContext} form '../context/WordleContext';
 
-export const WordleBox = ({ boxId }) => {
+export default function WordleBox({ boxId }) {
 	const wordleRef = useRef(boxId);
 
 	return (
@@ -9,4 +8,4 @@ export const WordleBox = ({ boxId }) => {
 			<strong id={`wordle-box-${boxId}`} ref={wordleRef} className="uppercase text-slate-200"></strong>
 		</div>
 	);
-};
+}

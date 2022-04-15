@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { WordleBox } from '../components/WordleComponents';
 import { WordleContext } from '../context/WordleContext';
+import WordleBox from './WordleBox';
 
 export default function Game() {
 	const { toBeGuessedWord } = useContext(WordleContext);

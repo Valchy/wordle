@@ -1,6 +1,10 @@
 import { qwerty } from '../data/qwerty';
 
 export default function Keyboard({}) {
+	const clickHandler = (letter) => {
+		window.dispatchEvent(new KeyboardEvent(letter == 'Enter' || letter == 'Backspace' ? 'keydown' : 'keypress', { key: letter }));
+	};
+
 	return (
 		<div className="mt-10">
 			{qwerty.map((keyboardRow, index) => (
@@ -8,12 +12,8 @@ export default function Keyboard({}) {
 					{keyboardRow.map((letter, index) => (
 						<div
 							key={`key-${index}`}
-							onClick={() =>
-								window.dispatchEvent(
-									new KeyboardEvent(letter == 'Enter' || letter == 'Backspace' ? 'keydown' : 'keypress', { key: letter })
-								)
-							}
-							className="text-white bg-slate-700 rounded-md uppercase font-bold m-1 py-2 px-4 cursor-pointer select-none"
+							onClick={() => clickHandler(letter)}
+							className="text-white bg-slate-700 min-w-[40px] text-center rounded-md uppercase font-bold m-1 py-2 px-4 cursor-pointer select-none"
 						>
 							{letter == 'Backspace' ? <>&#x232b;</> : letter}
 						</div>
