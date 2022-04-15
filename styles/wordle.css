@@ -1,11 +1,11 @@
-.wrong {
+.bg-wrong {
 	background-color: rgb(39 39 42);
 }
 
-.miss {
+.bg-miss {
 	background-color: rgb(235, 154, 48);
 }
 
-.correct {
+.bg-correct {
 	background-color: rgb(37, 168, 74);
 }

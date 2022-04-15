@@ -12,6 +12,7 @@ export default function Keyboard({}) {
 					{keyboardRow.map((letter, index) => (
 						<div
 							key={`key-${index}`}
+							id={`keyboard-key-${letter}`}
 							onClick={() => clickHandler(letter)}
 							className="text-white bg-slate-700 min-w-[40px] text-center rounded-md uppercase font-bold m-1 py-2 px-4 cursor-pointer select-none"
 						>

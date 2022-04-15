@@ -5,9 +5,10 @@ export const WordleContext = createContext();
 
 export const WordleProvider = ({ children }) => {
 	const [gameStatus, setGameStatus] = useState('playing');
+	const [alertMsg, setAlertMsg] = useState('New game, start guessing...');
 	const toBeGuessedWord = 'hello';
-	const selectedWordleRow = 0;
-	const selectedWordleBox = 0;
+	const selectedWordleRow = 0,
+		selectedWordleBox = 0;
 
 	// useEffect(() => {
 	// 	document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox--}`)?.classList?.remove('selected-wordle-box');
@@ -15,40 +16,60 @@ export const WordleProvider = ({ children }) => {
 	// }, [selectedWordleBox]);
 
 	useKey('Backspace', (e) => {
+		if (gameStatus != 'playing') return;
+
 		e.preventDefault();
 		if (selectedWordleBox != 0) selectedWordleBox--;
 
-		const selectedBox = document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`);
-		changeWordleBoxBgColor(selectedBox.parentNode, 'default');
-		selectedBox.textContent = '';
+		const wordleBoxElm = document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`);
+		changeWordleBoxBgColor(wordleBoxElm.parentNode, 'default');
+		wordleBoxElm.textContent = '';
 	});
 
 	useKey('Enter', (e) => {
+		if (gameStatus != 'playing') return;
+
 		e.preventDefault();
 		let wordGuess = '';
 
 		for (let i = 0; i <= 4; i++) {
 			const wordleBoxElm = document.getElementById(`wordle-box-${selectedWordleRow}-${i}`);
+			const wordleBoxLetter = wordleBoxElm.textContent.toLowerCase();
+
+			if (wordleBoxLetter == toBeGuessedWord[i]) {
+				changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-correct');
+				document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-correct');
+			} else if (wordleBoxLetter && toBeGuessedWord.includes(wordleBoxLetter)) {
+				changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-miss');
+				document.getElementById(`keyboard-key-${wordleBoxLetter}`).classList.add('bg-miss');
+			}
+
 			if (wordleBoxElm.textContent) wordGuess += wordleBoxElm.textContent;
 		}
 
-		if (wordGuess.length != 5) alert('Not enough letters!');
-		else if (wordGuess === toBeGuessedWord) alert('You Win!');
-		else if (selectedWordleRow != 5) {
+		if (wordGuess.length != 5) setAlertMsg('Not enough letters ^_^');
+		else if (wordGuess === toBeGuessedWord) {
+			setGameStatus('stopped');
+			setAlertMsg('You guessed the word :P');
+		} else if (selectedWordleRow != 5) {
 			selectedWordleBox = 0;
 			selectedWordleRow++;
-			alert('That is not the word!');
-		} else alert('You Lost!');
+			setAlertMsg('That is not the word!');
+		} else {
+			setGameStatus('stopped');
+			setAlertMsg('Yup, you just lost :/');
+		}
 	});
 
 	useEffect(() => {
 		const onGlobalKeyPress = (e) => {
+			// Error handling
+			if (gameStatus != 'playing') return;
 			if (selectedWordleBox == 5) return;
-			else {
-				const selectedBox = document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`);
-				changeWordleBoxBgColor(selectedBox.parentNode, 'wrong');
-				selectedBox.textContent = e.key;
-			}
+
+			const wordleBoxElm = document.getElementById(`wordle-box-${selectedWordleRow}-${selectedWordleBox}`);
+			changeWordleBoxBgColor(wordleBoxElm.parentNode, 'bg-wrong');
+			wordleBoxElm.textContent = e.key;
 
 			if (selectedWordleBox <= 4) selectedWordleBox++;
 		};
@@ -63,6 +84,8 @@ export const WordleProvider = ({ children }) => {
 			value={{
 				gameStatus,
 				setGameStatus,
+				alertMsg,
+				setAlertMsg,
 				selectedWordleBox,
 				selectedWordleRow,
 				toBeGuessedWord,
