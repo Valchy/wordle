@@ -16,8 +16,8 @@ export default function WordleGame() {
 				<title>Infinite Wordle Game</title>
 				<meta name="description" content="An infinite free wordle game you can play all day long" />
 				<meta name="author" content="Valeri Sabev" />
-				<meta property="og:title" content="An infinite free wordle game" />
-				<meta name="twitter:title" content="An infinite free wordle game" />
+				<meta property="og:title" content="Wordle Game" />
+				<meta name="twitter:title" content="Wordle Game" />
 				<meta property="og:image" content="images/words.png" />
 				<meta name="twitter:image" content="images/words.png" />
 				<meta property="og:description" content="An infinite free wordle game you can play all day long" />

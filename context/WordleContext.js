@@ -52,7 +52,7 @@ export const WordleProvider = ({ children }) => {
 				}
 
 				// Error handling if word is not in the word list
-				if (!words.includes(wordGuess)) return setAlertMsg('Word is not in word list :(');
+				if (!words.includes(wordGuess.toLowerCase())) return setAlertMsg('Word is not in word list :(');
 
 				// Do color highlighting of wordle box and keyboard
 				for (let i = 0; i <= 4; i++) {
