@@ -40,7 +40,7 @@ export const WordleProvider = ({ children }) => {
 			// On enter key press
 			if (key == 'Enter') {
 				// Error handling if not enough letters have been provided
-				if (selectedWordleBox != 5) return setWordleAlert({ label: 'Not enough letters ^_^', color: '#4299E1', time: 2000 });
+				if (selectedWordleBox != 5) return setWordleAlert({ label: 'Not enough letters ^_^', color: '#003C6C', time: 2000 });
 
 				let wordGuess = ''; // Will include guessed word based on the five wordle boxes on the selected row
 
@@ -53,7 +53,7 @@ export const WordleProvider = ({ children }) => {
 
 				// Error handling if word is not in the word list
 				if (!words.includes(wordGuess.toLowerCase()))
-					return setWordleAlert({ label: 'Word is not in word list :(', color: '#4299E1', time: 2000 });
+					return setWordleAlert({ label: 'Word is not in word list :(', color: '#003C6C', time: 2000 });
 
 				// Do color highlighting of wordle box and keyboard
 				for (let i = 0; i <= 4; i++) {

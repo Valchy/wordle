@@ -15,7 +15,7 @@ export default function AlertMsg() {
 		showAlert &&
 		wordleAlert.time != 0 && (
 			<div
-				style={{ backgroundColor: `${wordleAlert.color}`, boxShadow: '1px 12px 22px 0px rgba(0,0,0,0.7)' }}
+				style={{ backgroundColor: `${wordleAlert.color}` }}
 				className="transition-all duration-500 absolute z-50 rounded-md bottom-2 flex items-center justify-center text-white text-sm font-bold px-4 py-3"
 				role="alert"
 			>
