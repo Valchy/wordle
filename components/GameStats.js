@@ -3,30 +3,30 @@ import { WordleContext } from '../context/WordleContext';
 
 export default function GameStats() {
 	const {
-		gameStats: { played, wins, losses, guesses },
+		gameStats: { played, wins, losses, guesses }
 	} = useContext(WordleContext);
 
 	const uiDataGameStats = [
 		{
 			label: 'Played',
-			value: played,
+			value: played
 		},
 		{
 			label: 'Wins',
-			value: wins,
+			value: wins
 		},
 		{
 			label: 'Losses',
-			value: losses,
+			value: losses
 		},
 		{
 			label: 'Avg. guesses',
-			value: (guesses / (played || 1)).toFixed(1),
-		},
+			value: (guesses / (played || 1)).toFixed(1)
+		}
 	];
 
 	return (
-		<section className="mt-3 pb-2 flex">
+		<section className="mt-3 pb-4 flex">
 			{uiDataGameStats.map(({ label, value }, index) => (
 				<div key={`game-stats-${index}`} className="mx-3 text-white flex flex-col items-center">
 					<strong>{label}</strong>
