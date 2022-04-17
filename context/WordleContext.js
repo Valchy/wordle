@@ -92,7 +92,7 @@ export const WordleProvider = ({ children }) => {
 					setWordleAlert({
 						label:
 							endOfGame == 'wins'
-								? `Congrats, you ${gameStats.wins > 0 ? 'won again' : 'won'}! Reload to play again :)`
+								? `Congrats, you won! Reload to play again :)`
 								: `Damn, you ${
 										gameStats.losses > 0 ? 'lost again' : 'lost'
 								  }, word was "${toBeGuessedWord}". Reload and try again :)`,
