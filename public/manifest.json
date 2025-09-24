@@ -1,0 +1,41 @@
+{
+	"name": "Infinite Wordle - Unlimited Word Game",
+	"short_name": "Infinite Wordle",
+	"description": "Play Wordle unlimited! Unlike the original Wordle with one daily puzzle, our infinite Wordle lets you play endless word games 24/7.",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#000000",
+	"theme_color": "#000000",
+	"orientation": "portrait",
+	"scope": "/",
+	"lang": "en-US",
+	"categories": ["games", "entertainment", "education"],
+	"icons": [
+		{
+			"src": "/images/words.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/images/words.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	],
+	"screenshots": [
+		{
+			"src": "/images/words.png",
+			"sizes": "1280x720",
+			"type": "image/png",
+			"form_factor": "wide"
+		},
+		{
+			"src": "/images/words.png",
+			"sizes": "750x1334",
+			"type": "image/png",
+			"form_factor": "narrow"
+		}
+	]
+}
