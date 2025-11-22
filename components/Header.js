@@ -85,7 +85,7 @@ export default function Header() {
 									Does your business need an AI audit? Discover how AI can transform your operations and boost efficiency.
 								</p>
 								<a
-									href="https://vouchee.ai"
+									href="https://valchy.ai"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-center font-medium transition-colors cursor-pointer"
